@@ -5,13 +5,12 @@ namespace AddressBookFileIo
 {
     class AddressBookFileIo
     {
-        public static Dictionary<string, List<AddressBookFileIo>> addressBook = new Dictionary<string, List<AddressBookFileIo>>();
-        public static Dictionary<string, List<AddressBookFileIo>> City = new Dictionary<string, List<AddressBookFileIo>>();
-        public static Dictionary<string, List<AddressBookFileIo>> State = new Dictionary<string, List<AddressBookFileIo>>();
-        private List<AddressBookFileIo> people;
-
+        public static Dictionary<string, List<AddressBook>> addressBook = new Dictionary<string, List<AddressBook>>();
+        public static Dictionary<string, List<AddressBook>> City = new Dictionary<string, List<AddressBook>>();
+        public static Dictionary<string, List<AddressBook>> State = new Dictionary<string, List<AddressBook>>();
         static void Main(string[] args)
         {
+
             // Set the Foreground color to blue
             Console.ForegroundColor = ConsoleColor.Blue;
 
@@ -28,7 +27,7 @@ namespace AddressBookFileIo
             {
                 Console.WriteLine("Enter the address book name : ");
                 string addressbookname = Console.ReadLine();
-                AddressBookFileIo addrBook = new AddressBookFileIo();
+                AddressBook addrBook = new AddressBook();
                 Console.WriteLine("Enter the no of contacts in the address book: ");
                 int noOfContact = Convert.ToInt32(Console.ReadLine());
 
@@ -65,9 +64,9 @@ namespace AddressBookFileIo
                     Console.WriteLine(" ");
                     addrBook.ListContact();
                 }
-                Console.WriteLine("1.To Edit/Modify the Contact  details");
-                Console.WriteLine("2.To  Delete/remove the Contact  details");
-                Console.WriteLine("If You Want TO Serach Or View Contact BY City Or State CLick 3.option");
+                Console.WriteLine("1.To Edit/Modify the Contact details");
+                Console.WriteLine("2.To  Delete/remove the Contact details");
+                Console.WriteLine("If You Want To Search Or View Contact BY City Or State Click 3.option");
                 Console.WriteLine("3.city or state");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
@@ -82,29 +81,7 @@ namespace AddressBookFileIo
                         Console.WriteLine(" ");
                         addrBook.ListContact();
                         break;
-                    case 3:
-                        Console.WriteLine("Enter 1-To Search a person through a City");
-                        Console.WriteLine("Enter 2-To Search a person through a State");
-                        Console.WriteLine("Enter 3-To view a person by state list or city list");
-                        int opt = Convert.ToInt32(Console.ReadLine());
-                        switch (opt)
-                        {
 
-                            case 1:
-                                SearchAddress(opt);
-                                break;
-                            case 2:
-                                SearchAddress(opt);
-                                break;
-                            case 3:
-                                AddressBookFileIo.CountCityorState();
-
-                                break;
-                            default:
-                                Console.WriteLine("Invalid Option!");
-                                break;
-                        }
-                        break;
                 }
                 if (addressBook.ContainsKey(addressbookname))
                 {
@@ -116,12 +93,59 @@ namespace AddressBookFileIo
                     addressBook.Add(addressbookname, addrBook.people);
                 }
                 noOfBooks++;
-                foreach (KeyValuePair<string, List<AddressBookFileIo>> addr in addressBook)
+
+                foreach (KeyValuePair<string, List<AddressBook>> addr in addressBook)
                 {
                     Console.WriteLine("The address Books are:{0}", addr.Key);
 
                 }
+
+
+                Console.WriteLine("Enter 1-To Search a person through a City");
+                Console.WriteLine("Enter 2-To Search a person through a State");
+                Console.WriteLine("Enter 3-To view a person by state list or city list");
+                Console.WriteLine("Enter 4. Sort the Person  ");
+                Console.WriteLine("Enter 5. Sort the Based By City ");
+                Console.WriteLine("Enter 6. Sort the Based By State  ");
+                Console.WriteLine("Enter 7. Sort the Based By Zipcode ");
+                int opt = Convert.ToInt32(Console.ReadLine());
+                switch (opt)
+                {
+
+                    case 1:
+                        SearchAddress(opt);
+                        break;
+                    case 2:
+                        SearchAddress(opt);
+                        break;
+                    case 3:
+                        AddressBook.CountCityorState();
+                        break;
+                    case 4:
+
+                        //uc 11 sort name using sort function
+
+                        AddressBook.SortByPersonName(addressBook);
+                        break;
+                    case 5:
+                        AddressBook.SortBasedByCity(addressBook);
+                        break;
+                    case 6:
+                        AddressBook.SortBasedByState(addressBook);
+                        break;
+                    case 7:
+                        AddressBook.SortBasedByZipCode(addressBook);
+                        break;
+
+
+                    default:
+                        Console.WriteLine("Invalid Option!");
+                        break;
+                }
+
+
             }
+
             static void SearchAddress(int option)
             {
                 string city, state;
@@ -129,57 +153,23 @@ namespace AddressBookFileIo
                 {
                     Console.WriteLine("Enter the City Name");
                     city = Console.ReadLine();
-                    foreach (KeyValuePair<string, List<AddressBookFileIo>> kvp in addressBook)
+                    foreach (KeyValuePair<string, List<AddressBook>> kvp in addressBook)
                     {
-                        AddressBookFileIo.StoreCityList(kvp.Key, kvp.Value, city);
+                        AddressBook.StoreCityList(kvp.Key, kvp.Value, city);
 
                     }
                     if (option == 2)
                     {
                         Console.WriteLine("Enter the City Name");
                         state = Console.ReadLine();
-                        foreach (KeyValuePair<string, List<AddressBookFileIo>> kvp in addressBook)
+                        foreach (KeyValuePair<string, List<AddressBook>> kvp in addressBook)
                         {
-                            AddressBookFileIo.StoreStateList(kvp.Key, kvp.Value, state);
+                            AddressBook.StoreStateList(kvp.Key, kvp.Value, state);
                         }
                     }
                 }
             }
         }
 
-        private void GetCustomer(string firstName, string lastName, string phoneNumber, string addresses, string city, string state, string zipCode, string emailId)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void DeletePeople()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void ListContact()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void EditContact()
-        {
-            throw new NotImplementedException();
-        }
-
-        private static void CountCityorState()
-        {
-            throw new NotImplementedException();
-        }
-
-        private static void StoreStateList(string key, List<AddressBookFileIo> value, string state)
-        {
-            throw new NotImplementedException();
-        }
-
-        private static void StoreCityList(string key, List<AddressBookFileIo> value, string city)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
