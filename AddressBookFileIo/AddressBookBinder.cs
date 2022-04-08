@@ -1,4 +1,4 @@
-﻿namespace AddressBook
+﻿namespace AddressBookFileIo
 {
     internal class AddressBookBinder
     {
