@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AddressBookFileIo
+namespace AddressBook
 {
-    class AddressBookFileIo
+    class AddressBook
     {
         public static Dictionary<string, List<AddressBook>> addressBook = new Dictionary<string, List<AddressBook>>();
         public static Dictionary<string, List<AddressBook>> City = new Dictionary<string, List<AddressBook>>();
         public static Dictionary<string, List<AddressBook>> State = new Dictionary<string, List<AddressBook>>();
+        private List<AddressBook> people;
+
         static void Main(string[] args)
         {
 
@@ -64,9 +66,9 @@ namespace AddressBookFileIo
                     Console.WriteLine(" ");
                     addrBook.ListContact();
                 }
-                Console.WriteLine("1.To Edit/Modify the Contact details");
-                Console.WriteLine("2.To  Delete/remove the Contact details");
-                Console.WriteLine("If You Want To Search Or View Contact BY City Or State Click 3.option");
+                Console.WriteLine("1.To Edit/Modify the Contact  details");
+                Console.WriteLine("2.To  Delete/remove the Contact  details");
+                Console.WriteLine("If You Want To Serach Or View Contact By City Or State Click 3.option");
                 Console.WriteLine("3.city or state");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
@@ -81,6 +83,7 @@ namespace AddressBookFileIo
                         Console.WriteLine(" ");
                         addrBook.ListContact();
                         break;
+
 
                 }
                 if (addressBook.ContainsKey(addressbookname))
@@ -108,6 +111,8 @@ namespace AddressBookFileIo
                 Console.WriteLine("Enter 5. Sort the Based By City ");
                 Console.WriteLine("Enter 6. Sort the Based By State  ");
                 Console.WriteLine("Enter 7. Sort the Based By Zipcode ");
+                Console.WriteLine("Enter 8.write a data in file");
+                Console.WriteLine("Enter 9.read a data in file");
                 int opt = Convert.ToInt32(Console.ReadLine());
                 switch (opt)
                 {
@@ -171,5 +176,59 @@ namespace AddressBookFileIo
             }
         }
 
+        private static void StoreStateList(string key, List<AddressBook> value, string state)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void StoreCityList(string key, List<AddressBook> value, string city)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void SortBasedByZipCode(Dictionary<string, List<AddressBook>> addressBook)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void SortBasedByState(Dictionary<string, List<AddressBook>> addressBook)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void SortBasedByCity(Dictionary<string, List<AddressBook>> addressBook)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void SortByPersonName(Dictionary<string, List<AddressBook>> addressBook)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void CountCityorState()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void DeletePeople()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void EditContact()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ListContact()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void GetCustomer(string firstName, string lastName, string phoneNumber, string addresses, string city, string state, string zipCode, string emailId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
